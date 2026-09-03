@@ -71,9 +71,38 @@
     <section id="regiones" class="regions">
         <div class="container">
             <h2>Nuestras Regiones</h2>
+            <div class="add-region-btn">
+                <button class="btn-primary" onclick="scrollTo('agregar-region')">+ Agregar Nueva Región</button>
+            </div>
             <div class="regions-grid" id="regionsGrid">
                 <!-- Las regiones se cargan desde JavaScript -->
             </div>
+        </div>
+    </section>
+
+    <!-- Agregar Nueva Región -->
+    <section id="agregar-region" class="add-region-section">
+        <div class="container">
+            <h2>Agregar Nueva Región a Totuxlandia</h2>
+            <form class="region-form" id="regionForm">
+                <div class="form-group">
+                    <label for="regionName">Nombre de la Región:</label>
+                    <input type="text" id="regionName" placeholder="Ej: Isla Misteriosa" required>
+                </div>
+                <div class="form-group">
+                    <label for="regionSymbol">Símbolo/Emoji:</label>
+                    <input type="text" id="regionSymbol" placeholder="Ej: 🏔️" maxlength="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="regionDescription">Descripción:</label>
+                    <textarea id="regionDescription" placeholder="Describe la región..." rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="regionPopulation">Población:</label>
+                    <input type="text" id="regionPopulation" placeholder="Ej: 2.5M" required>
+                </div>
+                <button type="submit" class="btn-primary btn-large">Agregar Región</button>
+            </form>
         </div>
     </section>
 
@@ -83,7 +112,7 @@
             <h2>Autores de Totuxlandia</h2>
             <div class="featured-author">
                 <h3>✨ Facu: El Gran Autor de Totuxlandia ✨</h3>
-                <p>Facu es reconocido internacionalmente como uno de los más grandes autores de nuestro tiempo. Sus obras han cautivado a millones de lectores alrededor del mundo y han dejado una huella imborrable en la literatura contemporánea.</p>
+                <p>Facu es reconocido internacionalmente como uno de los más grandes autores de nuestro tiempo. Sus obras han cautivado a millones de lectores alrededor del mundo y han dejado una[...]
             </div>
             
             <div class="publish-section">
@@ -94,6 +123,13 @@
                     <input type="text" id="workTitle" placeholder="Título de tu obra" required>
                     <textarea id="workDescription" placeholder="Descripción o extracto de tu obra" rows="6" required></textarea>
                     <input type="text" id="workGenre" placeholder="Género (ej: Novela, Cuento, Poesía)" required>
+                    <div class="file-upload-wrapper">
+                        <label for="workImage" class="file-upload-label">
+                            📷 Sube una foto de portada
+                        </label>
+                        <input type="file" id="workImage" accept="image/*" class="file-input">
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
                     <button type="submit" class="btn-primary">Publicar Obra</button>
                 </form>
             </div>

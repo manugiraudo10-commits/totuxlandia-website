@@ -4,21 +4,76 @@
 let currentImageFile = null;
 let publishedWorksData = [];
 
-// Cargar regiones
+// Cargar regiones desde localStorage o usar las predeterminadas
+let REGIONES_DINAMICAS = [];
+
 function cargarRegiones() {
     const regionsGrid = document.getElementById('regionsGrid');
     regionsGrid.innerHTML = '';
     
-    REGIONES.forEach(region => {
+    REGIONES_DINAMICAS.forEach((region, index) => {
         const regionCard = document.createElement('div');
         regionCard.className = 'region-card';
+        
+        // Si es una región original, mostrar la opción de eliminar solo si hay más de las originales
+        const isCustomRegion = index >= REGIONES.length;
+        
         regionCard.innerHTML = `
             <h3>${region.simbolo} ${region.nombre}</h3>
             <p>${region.descripcion}</p>
             <p style="margin-top: 1rem; font-weight: bold; color: #3498db;">Población: ${region.poblacion}</p>
+            ${isCustomRegion ? `<button type="button" class="region-delete-btn" onclick="eliminarRegion(${index})" title="Eliminar región">×</button>` : ''}
         `;
         regionsGrid.appendChild(regionCard);
     });
+}
+
+function inicializarRegiones() {
+    const regionesGuardadas = localStorage.getItem('regionesTotuxlandia');
+    if (regionesGuardadas) {
+        REGIONES_DINAMICAS = JSON.parse(regionesGuardadas);
+    } else {
+        REGIONES_DINAMICAS = JSON.parse(JSON.stringify(REGIONES));
+    }
+    cargarRegiones();
+}
+
+function agregarRegion(nombre, simbolo, descripcion, poblacion) {
+    const nuevaRegion = {
+        id: Date.now(),
+        nombre: nombre,
+        descripcion: descripcion,
+        poblacion: poblacion,
+        simbolo: simbolo
+    };
+    
+    REGIONES_DINAMICAS.push(nuevaRegion);
+    localStorage.setItem('regionesTotuxlandia', JSON.stringify(REGIONES_DINAMICAS));
+    cargarRegiones();
+}
+
+function eliminarRegion(index) {
+    if (confirm('¿Está seguro que desea eliminar esta región?')) {
+        REGIONES_DINAMICAS.splice(index, 1);
+        localStorage.setItem('regionesTotuxlandia', JSON.stringify(REGIONES_DINAMICAS));
+        cargarRegiones();
+    }
+}
+
+// Manejar envío del formulario de agregar región
+function handleAddRegionForm(e) {
+    e.preventDefault();
+    
+    const regionName = document.getElementById('regionName').value;
+    const regionSymbol = document.getElementById('regionSymbol').value;
+    const regionDescription = document.getElementById('regionDescription').value;
+    const regionPopulation = document.getElementById('regionPopulation').value;
+    
+    agregarRegion(regionName, regionSymbol, regionDescription, regionPopulation);
+    
+    document.getElementById('regionForm').reset();
+    alert('¡Región agregada exitosamente a Totuxlandia! 🌍');
+    scrollTo('regiones');
 }
 
 // Cargar cultura
@@ -125,6 +180,7 @@ function handlePublishForm(e) {
         reader.onload = function(event) {
             newWork.image = event.target.result;
             publishedWorksData.push(newWork);
+            localStorage.setItem('publishedWorks', JSON.stringify(publishedWorksData));
             displayPublishedWorks();
             document.getElementById('publishForm').reset();
             removeImage();
@@ -133,9 +189,18 @@ function handlePublishForm(e) {
         reader.readAsDataURL(currentImageFile);
     } else {
         publishedWorksData.push(newWork);
+        localStorage.setItem('publishedWorks', JSON.stringify(publishedWorksData));
         displayPublishedWorks();
         document.getElementById('publishForm').reset();
         alert('¡Obra publicada exitosamente! 🎉 (sin imagen de portada)');
+    }
+}
+
+// Cargar obras publicadas desde localStorage
+function cargarObrasPublicadas() {
+    const obrasGuardadas = localStorage.getItem('publishedWorks');
+    if (obrasGuardadas) {
+        publishedWorksData = JSON.parse(obrasGuardadas);
     }
 }
 
@@ -145,7 +210,7 @@ function displayPublishedWorks() {
     worksList.innerHTML = '';
     
     if (publishedWorksData.length === 0) {
-        worksList.innerHTML = '<p style="text-align: center; color: #7f8c8d; padding: 2rem;">Aún no hay obras publicadas. ¡Sé el primero!</p>';
+        worksList.innerHTML = '<p style="text-align: center; color: #7f8c8d; padding: 2rem; grid-column: 1 / -1;">Aún no hay obras publicadas. ¡Sé el primero!</p>';
         return;
     }
 
@@ -169,11 +234,21 @@ function displayPublishedWorks() {
                     <p class="work-genre">Género: ${work.genre}</p>
                     <p class="work-description">${work.description}</p>
                     <p class="work-date">Publicado: ${work.date}</p>
+                    <button type="button" class="btn-delete work-delete-btn" onclick="eliminarObra(${work.id})">🗑️ Eliminar</button>
                 </div>
             </div>
         `;
         worksList.appendChild(workCard);
     });
+}
+
+// Eliminar obra publicada
+function eliminarObra(workId) {
+    if (confirm('¿Está seguro que desea eliminar esta obra?')) {
+        publishedWorksData = publishedWorksData.filter(work => work.id !== workId);
+        localStorage.setItem('publishedWorks', JSON.stringify(publishedWorksData));
+        displayPublishedWorks();
+    }
 }
 
 // Manejar envío de formulario de contacto
@@ -220,15 +295,17 @@ function closeMenuOnClick() {
 // Inicializar el sitio
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar contenido
-    cargarRegiones();
+    inicializarRegiones();
     cargarCultura();
     cargarContacto();
+    cargarObrasPublicadas();
     displayPublishedWorks();
     
     // Event listeners
     document.getElementById('hamburger').addEventListener('click', toggleMobileMenu);
     document.getElementById('contactForm').addEventListener('submit', handleContactForm);
     document.getElementById('publishForm').addEventListener('submit', handlePublishForm);
+    document.getElementById('regionForm').addEventListener('submit', handleAddRegionForm);
     document.getElementById('workImage').addEventListener('change', handleImageUpload);
     closeMenuOnClick();
     
@@ -246,3 +323,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Log de bienvenida
 console.log('🌍 ¡Bienvenido a Totuxlandia! El sitio está cargado correctamente.');
+console.log('Los datos se guardan localmente en tu navegador.');
