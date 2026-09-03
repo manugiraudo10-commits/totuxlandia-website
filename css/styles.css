@@ -340,6 +340,17 @@ section h2 {
     background-color: var(--light-bg);
 }
 
+.authors-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+}
+
+.authors-main {
+    width: 100%;
+}
+
 .featured-author {
     background-color: white;
     padding: 2rem;
@@ -372,8 +383,8 @@ section h2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
 }
 
 .publish-form input,
@@ -441,7 +452,7 @@ section h2 {
     text-align: center;
 }
 
-.preview-container img {
+.preview-image {
     max-width: 100%;
     max-height: 300px;
     border-radius: var(--border-radius);
@@ -487,13 +498,14 @@ section h2 {
 
 .work-image {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
+    display: block;
 }
 
 .work-image-placeholder {
     width: 100%;
-    height: 200px;
+    height: 250px;
     background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     display: flex;
     align-items: center;
@@ -545,12 +557,78 @@ section h2 {
     color: #95a5a6;
     font-size: 0.85rem;
     margin-top: auto;
+    margin-bottom: 0.5rem;
 }
 
 .work-delete-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: relative;
+    top: auto;
+    right: auto;
+}
+
+/* Panel Lateral - Información de Totuxlandia */
+.totuxlandia-info-panel {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.totuxlandia-info-panel h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 1rem;
+}
+
+.info-panel-content {
+    font-size: 0.95rem;
+}
+
+.info-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.info-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.info-section p {
+    color: #7f8c8d;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    line-height: 1.5;
+}
+
+.info-list li strong {
+    color: var(--primary-color);
 }
 
 /* Contacto */
@@ -665,5 +743,117 @@ section h2 {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Responsive para tablet */
+@media (max-width: 1024px) {
+    .authors-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .totuxlandia-info-panel {
+        position: static;
+        max-height: none;
+        top: auto;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        max-height: 300px;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .nav-links a {
+        padding: 0.5rem 1rem;
+        display: block;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .publish-form {
+        grid-template-columns: 1fr;
+    }
+
+    .publish-form input:nth-child(1),
+    .publish-form input:nth-child(2) {
+        grid-column: 1 / -1;
+    }
+
+    .authors-wrapper {
+        gap: 1rem;
+    }
+
+    #worksList {
+        grid-template-columns: 1fr;
+    }
+
+    .region-form {
+        grid-template-columns: 1fr;
     }
 }
