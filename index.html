@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sitio oficial del país ficticio de Totuxlandia">
+    <title>Totuxlandia - El País de las Maravillas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🌍 Totuxlandia</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#acerca">Acerca de</a></li>
+                <li><a href="#regiones">Regiones</a></li>
+                <li><a href="#cultura">Cultura</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido a Totuxlandia</h1>
+            <p>El país más extraordinario del mundo ficticio</p>
+            <button class="btn-primary" onclick="scrollTo('acerca')">Descubre más</button>
+        </div>
+    </section>
+
+    <!-- Acerca de -->
+    <section id="acerca" class="about">
+        <div class="container">
+            <h2>Acerca de Totuxlandia</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nuestra Historia</h3>
+                    <p>Totuxlandia fue fundada en el año 2150 en el corazón de un continente remoto. Es un país dedicado a la innovación, la paz y la armonía entre sus ciudadanos.</p>
+                    <p>Con una población de 15 millones de habitantes, Totuxlandia es conocida por su tecnología avanzada, su naturaleza pristina y su rica cultura multicultural.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>15M</h3>
+                        <p>Habitantes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>872</h3>
+                        <p>Años de Historia</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>50+</h3>
+                        <p>Regiones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regiones -->
+    <section id="regiones" class="regions">
+        <div class="container">
+            <h2>Nuestras Regiones</h2>
+            <div class="regions-grid" id="regionsGrid">
+                <!-- Las regiones se cargan desde JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultura -->
+    <section id="cultura" class="culture">
+        <div class="container">
+            <h2>Cultura Totuxlandiana</h2>
+            <div class="culture-grid" id="cultureGrid">
+                <!-- El contenido de cultura se carga desde JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" placeholder="Tu nombre" required>
+                <input type="email" id="email" placeholder="Tu email" required>
+                <textarea id="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                <button type="submit" class="btn-primary">Enviar mensaje</button>
+            </form>
+            <div class="contact-info" id="contactInfo">
+                <!-- La info de contacto se carga desde JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Totuxlandia. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+                <a href="#">Mapa del Sitio</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
