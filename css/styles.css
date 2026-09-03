@@ -122,6 +122,43 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+.btn-remove-image {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-remove-image:hover {
+    background-color: #c0392b;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
 /* Secciones */
 section {
     padding: 60px 20px;
@@ -193,6 +230,11 @@ section h2 {
     background-color: white;
 }
 
+.add-region-btn {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 .regions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -206,6 +248,7 @@ section h2 {
     text-align: center;
     transition: var(--transition);
     border-left: 5px solid var(--secondary-color);
+    position: relative;
 }
 
 .region-card:hover {
@@ -223,43 +266,291 @@ section h2 {
     color: #7f8c8d;
 }
 
-/* Cultura */
-.culture {
+.region-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(231, 76, 60, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.region-delete-btn:hover {
+    background-color: #e74c3c;
+}
+
+/* Agregar Región */
+.add-region-section {
     background-color: var(--light-bg);
 }
 
-.culture-grid {
+.region-form {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid var(--light-bg);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.region-form button {
+    grid-column: 1 / -1;
+}
+
+/* Autores y Publicaciones */
+.authors {
+    background-color: var(--light-bg);
+}
+
+.featured-author {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-author h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.publish-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.publish-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.publish-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.publish-form input,
+.publish-form textarea {
+    grid-column: 1 / -1;
+    padding: 12px;
+    border: 2px solid var(--light-bg);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.publish-form input:nth-child(1),
+.publish-form input:nth-child(2) {
+    grid-column: span 1;
+}
+
+.publish-form input:focus,
+.publish-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.file-upload-wrapper {
+    grid-column: 1 / -1;
+    padding: 1rem;
+    border: 2px dashed var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: rgba(52, 152, 219, 0.05);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.file-upload-wrapper:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-color: var(--accent-color);
+}
+
+.file-upload-label {
+    display: block;
+    text-align: center;
+    color: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1rem;
+    transition: var(--transition);
+}
+
+.file-upload-label:hover {
+    color: var(--accent-color);
+}
+
+.file-input {
+    display: none;
+}
+
+.image-preview {
+    display: none;
+    margin-top: 1rem;
+}
+
+.preview-container {
+    text-align: center;
+}
+
+.preview-container img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.published-works {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.published-works h3 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+#worksList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
 }
 
-.culture-card {
-    background-color: white;
+.work-card {
+    background-color: var(--light-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
 }
 
-.culture-card:hover {
-    transform: scale(1.05);
+.work-card:hover {
+    transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-.culture-card-content {
-    padding: 2rem;
+.work-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.culture-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.work-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.work-image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.work-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.work-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.work-author {
     color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
-.culture-card p {
+.work-genre {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: var(--secondary-color);
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.work-description {
     color: #7f8c8d;
-    line-height: 1.8;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.work-date {
+    color: #95a5a6;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+.work-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 /* Contacto */
