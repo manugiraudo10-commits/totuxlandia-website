@@ -19,7 +19,7 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#acerca">Acerca de</a></li>
                 <li><a href="#regiones">Regiones</a></li>
-                <li><a href="#cultura">Cultura</a></li>
+                <li><a href="#autores">Autores</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -77,12 +77,32 @@
         </div>
     </section>
 
-    <!-- Cultura -->
-    <section id="cultura" class="culture">
+    <!-- Autores y Publicaciones -->
+    <section id="autores" class="authors">
         <div class="container">
-            <h2>Cultura Totuxlandiana</h2>
-            <div class="culture-grid" id="cultureGrid">
-                <!-- El contenido de cultura se carga desde JavaScript -->
+            <h2>Autores de Totuxlandia</h2>
+            <div class="featured-author">
+                <h3>✨ Facu: El Gran Autor de Totuxlandia ✨</h3>
+                <p>Facu es reconocido internacionalmente como uno de los más grandes autores de nuestro tiempo. Sus obras han cautivado a millones de lectores alrededor del mundo y han dejado una huella imborrable en la literatura contemporánea.</p>
+            </div>
+            
+            <div class="publish-section">
+                <h3>Publica tu Obra</h3>
+                <p>¿Eres un autor en Totuxlandia? ¡Comparte tus historias y obras con nuestra comunidad!</p>
+                <form class="publish-form" id="publishForm">
+                    <input type="text" id="authorName" placeholder="Tu nombre" required>
+                    <input type="text" id="workTitle" placeholder="Título de tu obra" required>
+                    <textarea id="workDescription" placeholder="Descripción o extracto de tu obra" rows="6" required></textarea>
+                    <input type="text" id="workGenre" placeholder="Género (ej: Novela, Cuento, Poesía)" required>
+                    <button type="submit" class="btn-primary">Publicar Obra</button>
+                </form>
+            </div>
+
+            <div class="published-works" id="publishedWorks">
+                <h3>Obras Publicadas</h3>
+                <div id="worksList">
+                    <!-- Las obras se cargan desde JavaScript -->
+                </div>
             </div>
         </div>
     </section>
