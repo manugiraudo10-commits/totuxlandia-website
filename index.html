@@ -109,36 +109,49 @@
     <!-- Autores y Publicaciones -->
     <section id="autores" class="authors">
         <div class="container">
-            <h2>Autores de Totuxlandia</h2>
-            <div class="featured-author">
-                <h3>✨ Facu: El Gran Autor de Totuxlandia ✨</h3>
-                <p>Facu es reconocido internacionalmente como uno de los más grandes autores de nuestro tiempo. Sus obras han cautivado a millones de lectores alrededor del mundo y han dejado una[...]
-            </div>
-            
-            <div class="publish-section">
-                <h3>Publica tu Obra</h3>
-                <p>¿Eres un autor en Totuxlandia? ¡Comparte tus historias y obras con nuestra comunidad!</p>
-                <form class="publish-form" id="publishForm">
-                    <input type="text" id="authorName" placeholder="Tu nombre" required>
-                    <input type="text" id="workTitle" placeholder="Título de tu obra" required>
-                    <textarea id="workDescription" placeholder="Descripción o extracto de tu obra" rows="6" required></textarea>
-                    <input type="text" id="workGenre" placeholder="Género (ej: Novela, Cuento, Poesía)" required>
-                    <div class="file-upload-wrapper">
-                        <label for="workImage" class="file-upload-label">
-                            📷 Sube una foto de portada
-                        </label>
-                        <input type="file" id="workImage" accept="image/*" class="file-input">
-                        <div id="imagePreview" class="image-preview"></div>
+            <div class="authors-wrapper">
+                <!-- Panel Principal -->
+                <div class="authors-main">
+                    <h2>Autores de Totuxlandia</h2>
+                    <div class="featured-author">
+                        <h3>✨ Facu: El Gran Autor de Totuxlandia ✨</h3>
+                        <p>Facu es reconocido internacionalmente como uno de los más grandes autores de nuestro tiempo. Sus obras han cautivado a millones de lectores alrededor del mundo y han dejado un impacto duradero en la literatura totuxlandiana.</p>
                     </div>
-                    <button type="submit" class="btn-primary">Publicar Obra</button>
-                </form>
-            </div>
+                    
+                    <div class="publish-section">
+                        <h3>Publica tu Obra</h3>
+                        <p>¿Eres un autor en Totuxlandia? ¡Comparte tus historias y obras con nuestra comunidad!</p>
+                        <form class="publish-form" id="publishForm">
+                            <input type="text" id="authorName" placeholder="Tu nombre" required>
+                            <input type="text" id="workTitle" placeholder="Título de tu obra" required>
+                            <textarea id="workDescription" placeholder="Descripción o extracto de tu obra" rows="6" required></textarea>
+                            <input type="text" id="workGenre" placeholder="Género (ej: Novela, Cuento, Poesía)" required>
+                            <div class="file-upload-wrapper">
+                                <label for="workImage" class="file-upload-label">
+                                    📷 Sube una foto de portada
+                                </label>
+                                <input type="file" id="workImage" accept="image/*" class="file-input">
+                                <div id="imagePreview" class="image-preview"></div>
+                            </div>
+                            <button type="submit" class="btn-primary">Publicar Obra</button>
+                        </form>
+                    </div>
 
-            <div class="published-works" id="publishedWorks">
-                <h3>Obras Publicadas</h3>
-                <div id="worksList">
-                    <!-- Las obras se cargan desde JavaScript -->
+                    <div class="published-works" id="publishedWorks">
+                        <h3>Obras Publicadas</h3>
+                        <div id="worksList">
+                            <!-- Las obras se cargan desde JavaScript -->
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Panel Lateral - Información de Totuxlandia -->
+                <aside class="totuxlandia-info-panel">
+                    <h3>ℹ️ Información de Totuxlandia</h3>
+                    <div class="info-panel-content" id="totuxlandiaInfo">
+                        <!-- Se carga desde JavaScript -->
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
