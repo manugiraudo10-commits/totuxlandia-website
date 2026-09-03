@@ -79,19 +79,21 @@ function handleAddRegionForm(e) {
 // Cargar cultura
 function cargarCultura() {
     const cultureGrid = document.getElementById('cultureGrid');
-    cultureGrid.innerHTML = '';
-    
-    CULTURA.forEach(item => {
-        const cultureCard = document.createElement('div');
-        cultureCard.className = 'culture-card';
-        cultureCard.innerHTML = `
-            <div class="culture-card-content">
-                <h3>${item.titulo}</h3>
-                <p>${item.descripcion}</p>
-            </div>
-        `;
-        cultureGrid.appendChild(cultureCard);
-    });
+    if (cultureGrid) {
+        cultureGrid.innerHTML = '';
+        
+        CULTURA.forEach(item => {
+            const cultureCard = document.createElement('div');
+            cultureCard.className = 'culture-card';
+            cultureCard.innerHTML = `
+                <div class="culture-card-content">
+                    <h3>${item.titulo}</h3>
+                    <p>${item.descripcion}</p>
+                </div>
+            `;
+            cultureGrid.appendChild(cultureCard);
+        });
+    }
 }
 
 // Cargar información de contacto
@@ -108,6 +110,67 @@ function cargarContacto() {
         `;
         contactInfo.appendChild(infoCard);
     });
+}
+
+// Cargar información de Totuxlandia en el panel lateral
+function cargarInformacionTotuxlandia() {
+    const infoPanel = document.getElementById('totuxlandiaInfo');
+    if (!infoPanel) return;
+    
+    infoPanel.innerHTML = `
+        <div class="info-section">
+            <h4>📌 Datos Generales</h4>
+            <ul class="info-list">
+                <li><strong>Capital:</strong> ${TOTUXLANDIA_INFO.capital}</li>
+                <li><strong>Población:</strong> ${TOTUXLANDIA_INFO.poblacion}</li>
+                <li><strong>Área:</strong> ${TOTUXLANDIA_INFO.areaSuperficial}</li>
+                <li><strong>Idioma:</strong> ${TOTUXLANDIA_INFO.idioma}</li>
+                <li><strong>Moneda:</strong> ${TOTUXLANDIA_INFO.moneda}</li>
+                <li><strong>Fundación:</strong> ${TOTUXLANDIA_INFO.fundacion}</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h4>🏛️ Gobierno</h4>
+            <p>${TOTUXLANDIA_INFO.gobierno}</p>
+        </div>
+
+        <div class="info-section">
+            <h4>🌡️ Clima</h4>
+            <p>${TOTUXLANDIA_INFO.clima}</p>
+        </div>
+
+        <div class="info-section">
+            <h4>🏭 Industrias Principales</h4>
+            <ul class="info-list">
+                ${TOTUXLANDIA_INFO.industrias.map(ind => `<li>• ${ind}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h4>🎭 Símbolos Nacionales</h4>
+            <ul class="info-list">
+                <li><strong>Bandera:</strong> ${TOTUXLANDIA_INFO.simbolos.bandera}</li>
+                <li><strong>Himno:</strong> ${TOTUXLANDIA_INFO.simbolos.himno}</li>
+                <li><strong>Animal:</strong> ${TOTUXLANDIA_INFO.simbolos.animal}</li>
+                <li><strong>Flor:</strong> ${TOTUXLANDIA_INFO.simbolos.flor}</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h4>✨ Atracciones Turísticas</h4>
+            <ul class="info-list">
+                ${TOTUXLANDIA_INFO.atracciones.map(atr => `<li>📍 ${atr}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h4>🎉 Tradiciones</h4>
+            <ul class="info-list">
+                ${TOTUXLANDIA_INFO.tradiciones.map(trad => `<li>📅 ${trad}</li>`).join('')}
+            </ul>
+        </div>
+    `;
 }
 
 // Manejar la selección de imagen
@@ -136,7 +199,7 @@ function handleImageUpload(e) {
         reader.onload = function(event) {
             preview.innerHTML = `
                 <div class="preview-container">
-                    <img src="${event.target.result}" alt="Vista previa">
+                    <img src="${event.target.result}" alt="Vista previa" class="preview-image">
                     <button type="button" class="btn-remove-image" onclick="removeImage()">✕ Remover imagen</button>
                 </div>
             `;
@@ -184,7 +247,7 @@ function handlePublishForm(e) {
             displayPublishedWorks();
             document.getElementById('publishForm').reset();
             removeImage();
-            alert('¡Obra publicada exitosamente! 🎉');
+            alert('¡Obra publicada exitosamente con imagen! 🎉');
         };
         reader.readAsDataURL(currentImageFile);
     } else {
@@ -298,6 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
     inicializarRegiones();
     cargarCultura();
     cargarContacto();
+    cargarInformacionTotuxlandia();
     cargarObrasPublicadas();
     displayPublishedWorks();
     
