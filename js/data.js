@@ -95,3 +95,41 @@ const INFORMACION_CONTACTO = [
         icono: "📍"
     }
 ];
+
+// Información general de Totuxlandia para el panel lateral
+const TOTUXLANDIA_INFO = {
+    nombre: "Totuxlandia",
+    capital: "Ciudad Futura",
+    poblacion: "15 millones",
+    areaSuperficial: "2.8 millones km²",
+    idioma: "Totuxlandiano",
+    moneda: "Totales (T)",
+    fundacion: "Año 2150",
+    gobierno: "República Democrática",
+    clima: "Tropical a Templado",
+    industrias: [
+        "Tecnología Avanzada",
+        "Agricultura Sostenible",
+        "Turismo",
+        "Manufactura Inteligente",
+        "Literatura y Arte"
+    ],
+    simbolos: {
+        bandera: "🏳️ 3 franjas: Azul (tecnología), Verde (naturaleza), Dorado (prosperidad)",
+        himno: "Los Ecos de Totux",
+        animal: "Fénix Totuxlandiano",
+        flor: "Lirio Celestial"
+    },
+    atracciones: [
+        "Las Montañas Azules",
+        "Los Jardines Flotantes",
+        "La Biblioteca Infinita",
+        "El Puerto de Luz",
+        "La Foresta Primordial"
+    ],
+    tradiciones: [
+        "Día de la Unidad (1 de enero)",
+        "Festival de Luces (15 de julio)",
+        "Celebración de Cosecha (30 de septiembre)"
+    ]
+};
